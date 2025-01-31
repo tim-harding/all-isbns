@@ -15,6 +15,10 @@ export const useUiStore = defineStore("ui", () => {
   const isDragging = ref(false);
   const isSidebarOpen = ref(true);
   const isTooltipShown = useStorageAsync("is-tooltip-shown", true);
+  const isCountryOverlayShown = useStorageAsync(
+    "is-country-overlay-shown",
+    true
+  );
   const layoutMode = useStorageAsync(
     "layout-mode",
     "scanline"
@@ -43,6 +47,7 @@ export const useUiStore = defineStore("ui", () => {
     isDragging,
     isSidebarOpen,
     isTooltipShown,
+    isCountryOverlayShown,
     layoutMode,
     blendMode,
     datasets,

@@ -29,6 +29,7 @@ onMounted(() => {
       ]),
       () => ui.layoutMode,
       () => ui.blendMode,
+      () => ui.isCountryOverlayShown,
       () => vp.zoom,
       () => vp.size,
       () => vp.offset,

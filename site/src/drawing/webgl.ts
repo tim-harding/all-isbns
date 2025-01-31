@@ -271,7 +271,7 @@ export function useDrawing(canvas: HTMLCanvasElement) {
     }
 
     const lut = countryLuts[ui.layoutMode];
-    if (lut !== null) {
+    if (lut !== null && ui.isCountryOverlayShown) {
       const rect = Rect.transform(Rect.unitAt(Vec.zero()), (v) =>
         Vec.div(vp.viewportToViewportPx(vp.texToViewport(v)), vp.size)
       );

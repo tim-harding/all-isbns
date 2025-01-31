@@ -11,7 +11,12 @@ const store = useUiStore();
   <div :class="s.sidebar">
     <div :class="s.inner">
       <div :class="s.controls">
-        <ToggleButton v-model="store.isTooltipShown">Show tooltip</ToggleButton>
+        <div :class="s.toggles">
+          <ToggleButton v-model="store.isTooltipShown">Tooltip</ToggleButton>
+          <ToggleButton v-model="store.isCountryOverlayShown"
+            >Country overlay</ToggleButton
+          >
+        </div>
         <RadioGroup
           v-model="store.layoutMode"
           :options="[
@@ -65,5 +70,10 @@ const store = useUiStore();
 
 .datasets {
   grid-area: datasets;
+}
+
+.toggles {
+  display: grid;
+  row-gap: 0.75rem;
 }
 </style>
