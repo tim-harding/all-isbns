@@ -170,6 +170,8 @@ export function useDrawing(canvas: HTMLCanvasElement) {
     });
   }
 
+  requestRedraw();
+
   function draw() {
     const { x: w, y: h } = vp.size;
     if (w === 0 || h === 0) return;
@@ -275,8 +277,6 @@ export function useDrawing(canvas: HTMLCanvasElement) {
       );
       const tl = rect.tl;
       const sz = Rect.size(rect);
-
-      console.log(hover.countryIndex);
 
       gl.useProgram(programCountry);
       gl.bindVertexArray(vaoCountry);
