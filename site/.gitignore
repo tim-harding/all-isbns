@@ -29,3 +29,5 @@ coverage
 
 *.tsbuildinfo
 /dist.zip
+
+public/images

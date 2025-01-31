@@ -36,8 +36,8 @@ fn main() -> Result<(), AppError> {
         let mut output_directory = None;
         while let Some(arg) = args.next() {
             match arg.as_str() {
-                "--input-filepath" => filepath = args.next(),
-                "--output-directory" => output_directory = args.next(),
+                "--input" | "-i" => filepath = args.next(),
+                "--output" | "-o" => output_directory = args.next(),
                 _ => {}
             }
         }
