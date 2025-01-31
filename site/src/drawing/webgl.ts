@@ -278,6 +278,7 @@ export function useDrawing(canvas: HTMLCanvasElement) {
       const tl = rect.tl;
       const sz = Rect.size(rect);
 
+      gl.blendFunc(gl.ONE, gl.ONE);
       gl.useProgram(programCountry);
       gl.bindVertexArray(vaoCountry);
       gl.bindTexture(gl.TEXTURE_2D, lut);
