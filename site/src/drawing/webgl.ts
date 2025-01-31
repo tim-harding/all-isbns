@@ -217,6 +217,7 @@ export function useDrawing(canvas: HTMLCanvasElement) {
 
     gl.useProgram(programTile);
     gl.bindVertexArray(vaoTile);
+    const mode = ui.layoutMode;
     for (const dataset of datasetNames) {
       const { isEnabled, color } = ui.datasets[dataset];
       if (!isEnabled) continue;
@@ -226,14 +227,15 @@ export function useDrawing(canvas: HTMLCanvasElement) {
         texture: WebGLTexture;
       }[] = [];
 
-      for (let level = vp.desiredLevel(); level <= MAX_LEVEL; level++) {
+      for (let i = 0; i <= MAX_LEVEL; i++) {
+        const level = (i + vp.desiredLevel()) % MAX_LEVEL;
         let isCompleteLevel = true;
         for (const { x, y } of vp.visibleTiles(level)) {
-          const key: Key = { dataset, mode: ui.layoutMode, level, x, y };
+          const key: Key = { dataset, mode, level, x, y };
           const value = getValue(key);
           if (value === null || value.kind === "loading") {
             isCompleteLevel = false;
-            continue;
+            break;
           }
           toDraw.push({ key, texture: value.texture });
         }
