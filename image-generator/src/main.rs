@@ -104,23 +104,10 @@ fn main() -> Result<(), AppError> {
 
     let output_directory = Path::new(output_directory.as_str());
 
-    let total_images = records.len() as u32
-        * 2
-        * (0..7)
-            .map(|level| {
-                let cell_size = 2u32.pow(level);
-                let count_x = (W / MIPMAP_SIZE).div_ceil(cell_size);
-                let count_y = (H / MIPMAP_SIZE).div_ceil(cell_size);
-                count_x * count_y
-            })
-            .sum::<u32>();
-    let count = AtomicU32::new(0);
-
     println!("Creating cache");
     let space_filling_cache = SpaceFillingCache::new();
     let space_filling_cache = &space_filling_cache;
     println!("Created cache");
-    println!();
 
     println!("Creating country LUT");
     let data = lut();
@@ -143,12 +130,23 @@ fn main() -> Result<(), AppError> {
     let path = output_directory.join("country_lut_spacefilling.png");
     write_lut(&path, data.as_slice())?;
 
-    return Ok(());
+    let total_images = records.len() as u32
+        * 2
+        * (0..7)
+            .map(|level| {
+                let cell_size = 2u32.pow(level);
+                let count_x = (W / MIPMAP_SIZE).div_ceil(cell_size);
+                let count_y = (H / MIPMAP_SIZE).div_ceil(cell_size);
+                count_x * count_y
+            })
+            .sum::<u32>();
+    let count = AtomicU32::new(0);
 
+    println!();
     records
         .par_iter()
         .map(|(key, record)| {
-            [Mode::Scanline, Mode::SpaceFilling(&space_filling_cache)]
+            [Mode::Scanline, Mode::SpaceFilling(space_filling_cache)]
                 .par_iter()
                 .map(|mode| {
                     let rect = BitVecRect::new(record, *mode);
