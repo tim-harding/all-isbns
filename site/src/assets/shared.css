@@ -1,0 +1,36 @@
+.sr {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+:root {
+  --crust: #dce0e8;
+  --mantle: #e6e9ef;
+  --base: #eff1f5;
+  --surface-0: #ccd0da;
+  --surface-1: #bcc0cc;
+  --surface-2: #acb0be;
+  --overlay-0: #9ca0b0;
+  --overlay-1: #8c8fa1;
+  --overlay-2: #7c7f93;
+  --subtext-0: #6c6f85;
+  --subtext-1: #5c5f77;
+  --text: #4c4f69;
+  --blue: #1e66f5;
+  --lavender: #7287fd;
+  --blue-a0: rgb(30 102 245 / 0.15);
+  --blue-a1: rgb(30 102 245 / 0.3);
+}
