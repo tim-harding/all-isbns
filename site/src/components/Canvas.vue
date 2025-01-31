@@ -9,9 +9,6 @@ import { unwrap } from "@/shared/util";
 import { useDrawing } from "@/drawing/webgl";
 import { datasetNames } from "@/drawing/image-cache";
 
-// TODO:
-// - Shade countries
-
 const ui = useUiStore();
 const vp = useViewportStore();
 const hover = useHoverStore();
@@ -20,7 +17,6 @@ const canvas = useTemplateRef("canvas");
 
 onMounted(() => {
   const { requestRedraw } = useDrawing(unwrap(canvas.value));
-  requestRedraw();
   watch(
     [
       ...datasetNames.flatMap((name) => [
@@ -39,6 +35,7 @@ onMounted(() => {
       requestRedraw();
     }
   );
+  requestRedraw();
 });
 
 function scaleDpr(v: Vec.T) {

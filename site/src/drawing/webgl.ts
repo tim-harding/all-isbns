@@ -142,7 +142,6 @@ export function useDrawing(canvas: HTMLCanvasElement) {
       gl.UNSIGNED_BYTE,
       image
     );
-    // gl.generateMipmap(gl.TEXTURE_2D);
     return texture;
   }
 
@@ -169,8 +168,6 @@ export function useDrawing(canvas: HTMLCanvasElement) {
       draw();
     });
   }
-
-  requestRedraw();
 
   function draw() {
     const { x: w, y: h } = vp.size;

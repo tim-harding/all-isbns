@@ -135,8 +135,8 @@ fn main() -> Result<(), AppError> {
         * (0..7)
             .map(|level| {
                 let cell_size = 2u32.pow(level);
-                let count_x = (W / MIPMAP_SIZE).div_ceil(cell_size);
-                let count_y = (H / MIPMAP_SIZE).div_ceil(cell_size);
+                let count_x = W.div_ceil(MIPMAP_SIZE * cell_size);
+                let count_y = H.div_ceil(MIPMAP_SIZE * cell_size);
                 count_x * count_y
             })
             .sum::<u32>();
@@ -155,8 +155,8 @@ fn main() -> Result<(), AppError> {
                         .map(|level| -> Result<(), AppError> {
                             let rect = BitVecMip::new(&rect, level);
                             let cell_size = 2u32.pow(level);
-                            let count_x = (W / MIPMAP_SIZE).div_ceil(cell_size);
-                            let count_y = (H / MIPMAP_SIZE).div_ceil(cell_size);
+                            let count_x = W.div_ceil(MIPMAP_SIZE * cell_size);
+                            let count_y = H.div_ceil(MIPMAP_SIZE * cell_size);
                             for y_mip in 0..count_y {
                                 for x_mip in 0..count_x {
                                     let mut data = vec![];
