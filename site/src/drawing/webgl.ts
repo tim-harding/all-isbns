@@ -228,7 +228,7 @@ export function useDrawing(canvas: HTMLCanvasElement) {
       }[] = [];
 
       for (let i = 0; i <= MAX_LEVEL; i++) {
-        const level = (i + vp.desiredLevel()) % MAX_LEVEL;
+        const level = (i + vp.desiredLevel()) % (MAX_LEVEL + 1);
         let isCompleteLevel = true;
         for (const { x, y } of vp.visibleTiles(level)) {
           const key: Key = { dataset, mode, level, x, y };
